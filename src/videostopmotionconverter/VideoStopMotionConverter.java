@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package videostopmotionconverter;
 
 import java.awt.image.BufferedImage;
@@ -14,17 +10,11 @@ import java.util.TreeMap;
 import videostopmotionconverter.exceptions.InputFileMissingException;
 import videostopmotionconverter.exceptions.InvalidArgumentException;
 import videostopmotionconverter.exceptions.OutputPathMissingException;
-/**
- *
- * @author Teo
- */
+
 public class VideoStopMotionConverter {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+ 
         try {
             if (args.length != 4) {
                 throw new InvalidArgumentException();
