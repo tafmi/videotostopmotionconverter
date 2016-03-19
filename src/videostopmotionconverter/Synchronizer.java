@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package videostopmotionconverter;
 
 import com.xuggle.mediatool.IMediaWriter;
@@ -18,10 +14,6 @@ import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author Teo
- */
 public class Synchronizer {
     
     private  final double frameRate;
@@ -38,10 +30,7 @@ public class Synchronizer {
     }
     
     public void synchronize(int width,int height) throws IOException{    
-        // let's make a IMediaWriter to write the file.
         screenBounds = Toolkit.getDefaultToolkit().getScreenSize();
-        // We tell it we're going to add one video stream, with id 0,
-        // at position 0, and that it will have a fixed frame rate of FRAME_RATE.
         writer.addVideoStream(0, 0, ICodec.ID.CODEC_ID_MPEG4,
                    screenBounds.width/2, screenBounds.height/2);
         long startTime = System.nanoTime();
@@ -63,21 +52,17 @@ public class Synchronizer {
               Thread.sleep(sleeptime);
           }
           catch (InterruptedException e) {
-               // ignore
           }
         }
         writer.encodeVideo(0, blackImage,System.nanoTime() - startTime,TimeUnit.NANOSECONDS);
-        // tell the writer to close and write the trailer if  needed
         writer.close();
     }
     
     public BufferedImage convertToType(BufferedImage sourceImage, int targetType) {
         BufferedImage image;
-        // if the source image is already the target type, return the source image
         if (sourceImage.getType() == targetType) {
             image = sourceImage;
         }
-        // otherwise create a new image of the target type and draw the new image
         else {
             image = new BufferedImage(sourceImage.getWidth(),
                  sourceImage.getHeight(), targetType);
